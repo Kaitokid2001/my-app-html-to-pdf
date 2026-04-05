@@ -1,13 +1,13 @@
-import ExportHTML from "./component/export-html/page";
-import ImportHTML from "./component/import-html/page";
+"use client";
+
+import ExportWrapper from "./component/export-wrapper";
 import { Wrapper, HeaderTitle } from "./styles";
 
 export default function Home() {
   return (
     <Wrapper>
       <HeaderTitle>Tool HTML to CSS</HeaderTitle>
-      <ImportHTML/>
-      <ExportHTML/>
+      <ExportWrapper />
     </Wrapper>
   );
 }
