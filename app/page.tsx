@@ -6,7 +6,7 @@ import { Wrapper, HeaderTitle } from "./styles";
 export default function Home() {
   return (
     <Wrapper>
-      <HeaderTitle>Tool HTML to CSS</HeaderTitle>
+      <HeaderTitle>Tool HTML to PDF</HeaderTitle>
       <ExportWrapper />
     </Wrapper>
   );

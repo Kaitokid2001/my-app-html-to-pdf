@@ -1,32 +1,33 @@
-// load the image.
-// function load image ra base64 = canvas
-export function getImageBase64(url: string, ratio = 1) {
-  return new Promise<string>((resolve, reject) => {
-    const c = document.createElement("canvas");
-    const ctx = c.getContext("2d");
+export function getImageBase64(url: string, ratio: number = 1): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     const img = new Image();
-    // source hình
     img.src = url;
-    img.onload = function (e) {
-      c.width = img.naturalWidth * ratio;
-      c.height = img.naturalHeight * ratio;
-      ctx.drawImage(img, 0, 0, c.width, c.height);
-      const base64String = c.toDataURL();
-      resolve(base64String);
+    img.onload = () => {
+      canvas.width = img.naturalWidth * ratio;
+      canvas.height = img.naturalHeight * ratio;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL());
     };
+    img.onerror = () => reject(new Error('Failed to load image'));
   });
 }
 
-export function base64convert(url: any) {
-  return new Promise((resolve) => {
-    fetch(url)
-      .then((response) => response.blob())
-      .then((blob) => {
+export function base64convert(url: string): Promise<string> {
+  return fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.blob();
+    })
+    .then((blob) => {
+      return new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = (e) => {
-          resolve(e.target.result);
-        };
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => reject(new Error('Failed to read blob'));
         reader.readAsDataURL(blob);
       });
-  });
+    });
 }

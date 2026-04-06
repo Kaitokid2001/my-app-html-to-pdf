@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
     padding: 20px;
 `;
 
-export const Button = styled.label`
+export const Button = styled.button`
     display: inline-block;
     padding: 8px 16px;
     color: #fff;
@@ -18,11 +18,15 @@ export const Button = styled.label`
     cursor: pointer;
     border-radius: 999px;
     border: 1px solid #fff;
-    display: inline-block;
     background: #2E80CE;
     -webkit-user-select: none;
 
     &:hover{
         opacity: 0.7;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 `;

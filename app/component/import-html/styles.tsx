@@ -43,12 +43,12 @@ export const TextImport = styled.pre`
 
 export const TextExport = styled.div`
     width: 100%;
-    height: 300px;
+    min-height: 300px;
     margin-top: 20px;
     padding: 10px;
     border: 1px solid #ccc;
-    overflow-y: auto;
-    overflow-x: hidden;
-    border: 1px solid #ccc;
+    overflow: visible;
     box-sizing: border-box;
+    word-wrap: break-word;
+    white-space: normal;
 `;

@@ -9,7 +9,7 @@ export default function ExportWrapper() {
   return (
     <div>
       <ImportHTML htmlText={htmlText} setHtmlText={setHtmlText} />
-      <ExportHTML htmlText={htmlText} />
+      <ExportHTML />
     </div>
   );
 }
